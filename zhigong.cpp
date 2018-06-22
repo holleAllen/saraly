@@ -2,32 +2,43 @@
 #include<conio.h>
 #include<iostream>
 using namespace std;
-struct company{
+struct stu{
 	char num[20];
 	char name[40];
-    float post;
+    float gangwei;
     float xinji;
-    float allowance;
+    float jintie;
     float jixiao;
     float yingfa;
     float gere;
     float shifa;
-}staff[100],*sta;
-void read()    //读取文件
+}gx[100],*p;
+int n=0;
+void read()          //读取职工工资数据
 {
-	int i=1;
 	FILE *fp;
-	sta=staff;
-	if((fp=fopen("gz1.dat","rt"))==NULL){
-		cout<<"\nCannot open file strike any key exit!";
+	int i;
+    p=gx;
+	if((fp=fopen("gz5","rb"))==NULL)
+	{
+		cout<<"Cannot open file strike any key exit!";
 		getch();
 		exit(-1);
 	}
-	
-	fread(sta,sizeof(struct company),5,fp);
-	for(i=1;)
+	for(i=0;i<52;i++,p++)
+	{
+		fread(p,sizeof(struct stu),52,fp);
+		n++ ; 
+		cout<<" "<<p->num<<" "<<p->name<<" "<<p->gangwei<<" "
+			     <<p->xinji<<" "<<p->jintie<<" "<<p->jixiao<<" "
+				 <<p->yingfa<<" "<<p->gere<<" "<<p->shifa<<endl;
+	}
+	cout<<"               "<<"................共有"<<n<<"个人"<<endl;
 	fclose(fp);
-	cout<<"\n";
+
+}
+void write()
+{
 
 }
 
@@ -80,7 +91,11 @@ int main()
 
 }*/
 int main()
-{   
+{
+	
+	cout<<"工号"<<" "<<"姓名"<<" "<<"岗位工资"<<" "
+		<<"薪级工资"<<" "<<"职务津贴"<<" "<<"绩效工资"<<" "
+		<<"应发工资"<<" "<<"个人所得税"<<" "<<"实发工资\n";
 	read();
 	return 0;
 }
