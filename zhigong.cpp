@@ -269,7 +269,55 @@ void list()
 	}
 }
 void grsde()
-{}
+{  
+	int i;
+	for(i=0;i<n;i++)
+		zggz[i].yf=zggz[i].gg+zggz[i].xj+zggz[i].jt+zggz[i].jx
+		if(zggz[i].yf<500)
+		{
+			zggz[i].sf=zggz[i].yf-zggz[i].yf*0.05;
+		}
+		else if(zggz[i].yf>=500&&zggz[i].yf<2000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-(zggz[i].yf-500)*0.1;
+		}
+		else if(zggz[i].yf>=2000&&zggz[i].yf<5000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-(zggz[i].yf-2000)*0.15;
+		}
+		else if(zggz[i].yf>=5000&&zggz[i].yf<20000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-(zggz[i].yf-5000)*0.2;
+		}
+		else if(zggz[i].yf>=20000&&zggz[i].yf<40000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-15000*0.2-
+			          (zggz[i].yf-20000)*0.25;
+		}
+		else if(zggz[i].yf>=40000&&zggz[i].yf<60000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-15000*0.2-
+				20000*0.25-(zggz[i].yf-40000)*0.3;
+		}
+		else if(zggz[i].yf>=60000&&zggz[i].yf<80000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-15000*0.2-
+				20000*0.25-20000*0.3-(zggz[i].yf-60000)*0.35;
+		}
+		else if(zggz[i].yf>=80000&&zggz[i].yf<100000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-15000*0.2-
+				20000*0.25-20000*0.3-20000*0.35-(zggz[i].yf-80000)*0.4;
+		}
+		else if(zggz[i].yf>100000)
+		{
+			zggz[i].sf=zggz[i].yf-500*0.05-1500*0.1-3000*0.15-15000*0.2-
+				20000*0.25-20000*0.3-20000*0.35-20000*0.4-(zggz[i].yf-100000)*0.45;
+		}
+		write();
+
+
+}
 int main()
 {
 	int count;
