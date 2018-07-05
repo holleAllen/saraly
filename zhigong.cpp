@@ -34,7 +34,7 @@ struct member{
 }zggz[100];
 void grsds();
 void list();    //函数声明
-int n=0;        //全局变量n
+int n = 0;        //全局变量n
 
 int read()      //读取文件数据
 {
@@ -47,7 +47,7 @@ int read()      //读取文件数据
 		exit(-1);
 	}
 
-	for(i=0;i<100;i++)
+	for(i = 0;i<100;i++)
 	{
 		
 		fread(&zggz[i],sizeof(struct member),1,fp);	
@@ -72,7 +72,7 @@ void write()    //保存数据
 		exit(-1);
 	}
 
-	for(i=0;i<n;i++)
+	for(i = 0;i<n;i++)
 	{
 		fwrite(&zggz[i],sizeof(struct member),1,fp);  
 	}
@@ -85,18 +85,17 @@ void find()    //实现查询职工信息功能
 	char num1[20];
 	int i;
 	int flag=0;
-	printf("请输入要查找的工号：\n");
+	printf("请输入要查找的工号(1001~1100)：\n");
 	scanf("%s",num1);
-	for(i=0;i<n;i++)
+	for(i = 0;i<n;i++)
 	{
 		if(strcmp(num1,zggz[i].num)==0)
-		{   flag=1;
-			printf("工号  姓名  岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
-			printf("\n %s %s %.2f %.2f %.2f %.2f %.2f %.2f %.2", zggz[i].num, zggz[i].name, zggz[i].gg,
+		{   flag = 1;
+			printf("工号  姓名   岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
+			printf("\n %s %s %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f", zggz[i].num, zggz[i].name, zggz[i].gg,
 				zggz[i].xj, zggz[i].jt, zggz[i].xj, zggz[i].yf, zggz[i].gere, zggz[i].sf);
 		
 			printf("\n\n");
-		//	cout<<n<<endl;
 			break;
 		}
 	}
@@ -129,29 +128,30 @@ void add()    //添加职工数据到文件
 	scanf("%f",&zggz[n].jt);
 	printf("请输入绩效工资:  "); 
 	scanf("%f",&zggz[n].jx);
-	//grsds();
 	printf("\n"); 
-	printf("添加成功\n");  
+	printf("添加成功并保存\n");  
 	n++;
 	printf("\n"); 
+	grsds();
 	write(); //直接保存 
 }
 
 void del()    //删除文件中指定职工数据
 {	
-	int put=n;
+	int put = n;
 	int i, j, k, t, kongzi;
 	char name[20];
 	printf("按姓名删除\n");
 	scanf("%s",name);
-	for(kongzi=1, i=0;kongzi&&i<put;i++)
+	for(kongzi = 1, i = 0;kongzi&&i<put;i++)
 	{
 		if(strcmp(zggz[i].name,name)==0)
 		{
 			printf("此人原始记录为：\n");
-			printf("工号  姓名  岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
-			printf("\n %s %s    %.2f    %.2f      %.2f       %.2f       %.2f      %.2f    %.2", zggz[i].num,
-				zggz[i].name, zggz[i].gg, zggz[i].xj, zggz[i].jt, zggz[i].xj, zggz[i].yf, zggz[i].gere, zggz[i].sf);
+			printf("工号  姓名   岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
+			printf("\n %s %s    %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f", zggz[i].num,    zggz[i].name,   
+				zggz[i].gg,   zggz[i].xj,   zggz[i].jt,   zggz[i].xj,   zggz[i].yf,   zggz[i].gere, 
+				zggz[i].sf);
 			printf("\n确认删除请按1，返回请按0\n");
 			scanf("%d",&k);
 			    if(k==1)
@@ -197,14 +197,11 @@ void modify()    //修改文件中职工信息
 {
 
 	int i;
-	int flag=0;
+	int flag = 0;
 	char num2[20];
-	printf("原来的职工信息:\n");
-	list();
-	//printf("%d",n);
-	printf("请输入要修改的职工工号(1001~1050)：\n");
+	printf("请输入要修改的职工工号(1001~1100)：\n");
 	scanf("%s",num2);
-	for(i=0;i<n;i++)
+	for(i = 0;i<n;i++)
 	{
 		if(strcmp(zggz[i].num,num2)==0)  
 		{
@@ -220,9 +217,10 @@ void modify()    //修改文件中职工信息
 			printf("修改后的效绩工资为：");
 			scanf("%f",&zggz[i].xj);
 			printf("修改成功！\n");
-			//grsds();
+			
 		}	
 	}
+	grsds();
 
 	if(flag==0)
 		{
@@ -236,10 +234,10 @@ void modify()    //修改文件中职工信息
 void list()    //浏览文件全部数据
 {
 	int i;
-	printf("工号  姓名  岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
-	for(i=0;i<n;i++)
+	printf("工号  姓名   岗位工资  薪级工资  职位津贴  绩效工资  应发工资  所得税  实发工资\n");
+	for(i = 0;i<n;i++)
 	{
-		printf("\n %s %s %.2f %.2f %.2f %.2f %.2f %.2f %.2f", zggz[i].num, zggz[i].name, zggz[i].gg,
+		printf("\n %s %s %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f", zggz[i].num, zggz[i].name, zggz[i].gg,
 			zggz[i].xj,	zggz[i].jt, zggz[i].xj, zggz[i].yf, zggz[i].gere, zggz[i].sf);
 	}
 
@@ -249,7 +247,7 @@ void list()    //浏览文件全部数据
 void grsds()    //计算个人所得税
 {  
 	int i;
-	for(i=0;i<n;i++)
+	for(i = 0;i<n;i++)
 	{
 		zggz[i].yf=zggz[i].gg+zggz[i].xj+zggz[i].jt+zggz[i].jx;
 		if(zggz[i].yf<500)
@@ -322,7 +320,6 @@ int main()    //主函数实现连接各模块功能
 	printf("      ###  欢迎使用广西民族大学软件与信息安全学院职工工资管理系统！  ###\n\n");
 	printf("\n");
 	do{
-		//system("cls");
 	    printf("          请选择<1 - 7>:\n");
 		printf("      ===================================================================\n");
     	printf("      |            1、查询职工工资信息                                  |\n");
@@ -334,7 +331,8 @@ int main()    //主函数实现连接各模块功能
 	    printf("      |            7、退出系统                                          |\n");
 		printf("      ===================================================================");
 		printf("\n");
-	    printf("      请输入您的选择：\n");
+		printf("注：    确认完成后请保存！\n");
+		printf("        请输入您的选择：\n");
 	    scanf("%d",&count);
 	    switch(count)
 		{
@@ -352,6 +350,7 @@ int main()    //主函数实现连接各模块功能
 			break;
 		case 5:
 			write();
+			printf("保存成功！\n");
 			break;
 		case 6:
 			list();
